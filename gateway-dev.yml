@@ -18,7 +18,7 @@ spring:
             - Path=/subscription/**
 
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT:8012}
 
 eureka:
   client:

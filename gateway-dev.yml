@@ -1,0 +1,47 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      default-filter:
+        -
+      routes:
+        - id: user-service-route
+          uri: lb://course-service
+          predicates:
+            - Path=/subscription/**
+        - id: product-service-route
+          uri: lb://subscripcion-service
+          predicates:
+            - Path=/products/**
+
+server:
+  port: ${SERVER_PORT:8080}
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    registryFetchIntervalSeconds: 5
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    preferIpAddress: false
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 10
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

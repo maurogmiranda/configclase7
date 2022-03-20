@@ -8,14 +8,14 @@ spring:
       default-filter:
         -
       routes:
-        - id: user-service-route
+        - id: course-service-route
           uri: lb://course-service
           predicates:
-            - Path=/subscription/**
-        - id: product-service-route
+            - Path=/course/**
+        - id: subscripcion-service-route
           uri: lb://subscripcion-service
           predicates:
-            - Path=/products/**
+            - Path=/subscription/**
 
 server:
   port: ${SERVER_PORT:8080}
